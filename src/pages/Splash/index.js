@@ -1,0 +1,38 @@
+import React, {useEffect} from 'react';
+import {StyleSheet, Text, View, Image} from 'react-native';
+import {Logo} from '../../assets';
+
+const Splash = ({navigation}) => {
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.replace('GetStarted');
+    }, 3000);
+  }, []);
+
+  return (
+    <View style={styles.container}>
+      <Image source={Logo} style={styles.icon} />
+      <Text style={styles.text}>Chocodocs</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  icon: {
+    width: 90,
+    height: 90,
+  },
+  text: {
+    color: 'black',
+    marginTop: 10,
+    fontSize: 18,
+    fontFamily: 'NunitoSans-SemiBold',
+  },
+});
+
+export default Splash;
