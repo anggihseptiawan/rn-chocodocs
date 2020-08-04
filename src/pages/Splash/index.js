@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {Logo} from '../../assets';
+import {fonts} from '../../utils';
 
 const Splash = ({navigation}) => {
   useEffect(() => {
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
     color: 'black',
     marginTop: 10,
     fontSize: 18,
-    fontFamily: 'NunitoSans-SemiBold',
+    fontFamily: fonts.primary[600],
   },
 });
 

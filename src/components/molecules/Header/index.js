@@ -1,12 +1,13 @@
 import React from 'react';
-import {StyleSheet, View, Text, Image} from 'react-native';
-import {IconBack} from '../../../assets';
+import {StyleSheet, Text, View} from 'react-native';
+import {Button} from '../../atoms';
+import {fonts} from '../../../utils';
 
-const Header = () => {
+const Header = ({handlePress, title}) => {
   return (
     <View style={styles.container}>
-      <Image source={IconBack} style={styles.image} />
-      <Text style={styles.text}>Header</Text>
+      <Button type="icon-only" icon="back" handlePress={handlePress} />
+      <Text style={styles.text}>{title}</Text>
     </View>
   );
 };
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginRight: 20,
     fontSize: 20,
-    fontFamily: 'NunitoSans-SemiBold',
+    fontFamily: fonts.primary[600],
     color: '#112340',
   },
 });

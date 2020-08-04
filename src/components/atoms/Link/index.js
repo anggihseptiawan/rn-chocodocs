@@ -1,11 +1,13 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
+import {TouchableNativeFeedback} from 'react-native-gesture-handler';
+import {colors, fonts} from '../../../utils';
 
-const Link = ({title, size, space, align}) => {
+const Link = ({title, size, space, align, handlePress}) => {
   return (
-    <View>
+    <TouchableNativeFeedback onPress={handlePress}>
       <Text style={styles.text(size, space, align)}>{title}</Text>
-    </View>
+    </TouchableNativeFeedback>
   );
 };
 
@@ -14,8 +16,8 @@ const styles = StyleSheet.create({
     textAlign: align,
     marginBottom: space,
     fontSize: size,
-    color: '#7D8797',
-    fontFamily: 'NunitoSans-Regular',
+    color: colors.text.secondary,
+    fontFamily: fonts.primary[400],
     textDecorationLine: 'underline',
   }),
 });

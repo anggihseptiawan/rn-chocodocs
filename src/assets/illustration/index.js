@@ -1,3 +1,5 @@
 import Background from './bg.jpg';
+import NullPhoto from './user.png';
+import Person from './person.png';
 
-export {Background};
+export {Background, NullPhoto, Person};

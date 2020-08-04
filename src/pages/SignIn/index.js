@@ -2,8 +2,9 @@ import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {Logo} from '../../assets';
 import {Input, Link, Button} from '../../components';
+import {colors, fonts} from '../../utils';
 
-const SignIn = () => {
+const SignIn = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Image source={Logo} style={styles.image} />
@@ -11,8 +12,17 @@ const SignIn = () => {
       <Input label="Email Address" space={25} />
       <Input label="Password" space={10} />
       <Link title="Forgot Password" size={12} space={40} />
-      <Button title="Sign In" space={30} />
-      <Link title="Create New Account" size={16} align="center" />
+      <Button
+        title="Sign In"
+        space={30}
+        handlePress={() => navigation.replace('MainApp')}
+      />
+      <Link
+        title="Create New Account"
+        size={16}
+        align="center"
+        handlePress={() => navigation.navigate('SignUp')}
+      />
     </View>
   );
 };
@@ -27,8 +37,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontFamily: 'NunitoSans-SemiBold',
-    color: '#112340',
+    fontFamily: fonts.primary[600],
+    color: colors.secondary,
     marginVertical: 40,
     maxWidth: 190,
   },
