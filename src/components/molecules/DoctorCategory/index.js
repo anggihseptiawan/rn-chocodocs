@@ -2,8 +2,9 @@ import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import {medicine, stetoskop, heart} from '../../../assets';
 import {colors, fonts} from '../../../utils';
+import {TouchableNativeFeedback} from 'react-native-gesture-handler';
 
-const DoctorCategory = ({category}) => {
+const DoctorCategory = ({category, handlePress}) => {
   const Icon = () => {
     if (category === 'dokter umum') {
       return <Image source={medicine} style={styles.image} />;
@@ -18,13 +19,13 @@ const DoctorCategory = ({category}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <TouchableNativeFeedback style={styles.container} onPress={handlePress}>
       <View style={styles.imageWrapper}>
         <Icon />
       </View>
       <Text style={styles.label}>Saya butuh</Text>
       <Text style={styles.category}>{category}</Text>
-    </View>
+    </TouchableNativeFeedback>
   );
 };
 

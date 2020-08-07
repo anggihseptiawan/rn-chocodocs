@@ -9,7 +9,7 @@ import {
 import {fonts, colors} from '../../utils';
 import {JSONCategoryDoctor} from '../../assets';
 
-const Doctor = () => {
+const Doctor = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -23,7 +23,11 @@ const Doctor = () => {
               <View style={styles.category}>
                 {JSONCategoryDoctor.data.map((data) => {
                   return (
-                    <DoctorCategory key={data.id} category={data.category} />
+                    <DoctorCategory
+                      key={data.id}
+                      category={data.category}
+                      handlePress={() => navigation.navigate('ChooseDoctor')}
+                    />
                   );
                 })}
               </View>

@@ -5,11 +5,15 @@ const mainColors = {
   dark2: '#495A75',
   grey1: '#7D8797',
   grey2: '#E9E9E9',
+  grey3: '#EDEEF0',
+  blue: '#0066CB',
 };
 
 export const colors = {
   primary: mainColors.green1,
   secondary: mainColors.dark1,
+  disable: mainColors.grey3,
+  active: mainColors.blue,
   text: {
     primary: mainColors.dark1,
     secondary: mainColors.grey1,

@@ -4,8 +4,13 @@ import {TouchableNativeFeedback} from 'react-native-gesture-handler';
 import {colors} from '../../../utils/colors';
 import IconOnly from './IconOnly';
 import {fonts} from '../../../utils';
+import ButtonSend from './ButtonSend';
 
-const Button = ({type, title, space, handlePress, icon}) => {
+const Button = ({type, title, space, handlePress, icon, disable}) => {
+  if (type === 'btn-icon') {
+    return <ButtonSend disable={disable} />;
+  }
+
   if (type === 'icon-only') {
     return <IconOnly icon={icon} handlePress={handlePress} />;
   }

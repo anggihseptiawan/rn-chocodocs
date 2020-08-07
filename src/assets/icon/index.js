@@ -9,6 +9,7 @@ import medicine from './medicine.png';
 import heart from './heart.png';
 import Star from './star.png';
 import NullStar from './star1.png';
+import Send from './send.png';
 
 export {
   Logo,
@@ -21,5 +22,6 @@ export {
   medicine,
   heart,
   Star,
-  NullStar
+  NullStar,
+  Send,
 };

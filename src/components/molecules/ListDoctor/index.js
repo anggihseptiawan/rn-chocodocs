@@ -1,16 +1,19 @@
 import React from 'react';
 import {View, StyleSheet, Text, Image} from 'react-native';
 import {fonts, colors} from '../../../utils';
+import {IconNext} from '../../../assets';
+import {TouchableNativeFeedback} from 'react-native-gesture-handler';
 
-const ListDoctor = ({image, name, chat}) => {
+const ListDoctor = ({image, name, chat, type, handlePress}) => {
   return (
-    <View style={styles.container}>
+    <TouchableNativeFeedback style={styles.container} onPress={handlePress}>
       <Image source={image} style={styles.image} />
       <View style={styles.text}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.chat}>{chat}</Text>
       </View>
-    </View>
+      {type === 'next' && <Image source={IconNext} style={styles.icon} />}
+    </TouchableNativeFeedback>
   );
 };
 
@@ -27,6 +30,7 @@ const styles = StyleSheet.create({
   },
   text: {
     marginLeft: 10,
+    flex: 1,
   },
   name: {
     fontSize: 16,
@@ -36,6 +40,10 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: fonts.primary[300],
     color: colors.text.secondary,
+  },
+  icon: {
+    width: 20,
+    height: 20,
   },
 });
 
