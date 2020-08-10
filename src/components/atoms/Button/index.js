@@ -15,6 +15,14 @@ const Button = ({type, title, space, handlePress, icon, disable}) => {
     return <IconOnly icon={icon} handlePress={handlePress} />;
   }
 
+  if (disable) {
+    return (
+      <View style={styles.disable(space)}>
+        <Text style={styles.disableText}>{title}</Text>
+      </View>
+    );
+  }
+
   return (
     <TouchableNativeFeedback
       style={styles.container(type, space)}
@@ -32,6 +40,18 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: space,
   }),
+  disable: (space) => ({
+    borderRadius: 8,
+    backgroundColor: colors.button.disable.background,
+    padding: 10,
+    marginBottom: space,
+  }),
+  disableText: {
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 16,
+    fontFamily: fonts.primary[600],
+  },
   btn: (type) => ({
     textAlign: 'center',
     color: type === 'secondary' ? 'black' : 'white',

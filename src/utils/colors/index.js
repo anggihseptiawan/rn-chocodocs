@@ -7,6 +7,8 @@ const mainColors = {
   grey2: '#E9E9E9',
   grey3: '#EDEEF0',
   blue: '#0066CB',
+  semiBlack: 'rgba(0,0,0,.5)',
+  red: '#E06379',
 };
 
 export const colors = {
@@ -14,6 +16,8 @@ export const colors = {
   secondary: mainColors.dark1,
   disable: mainColors.grey3,
   active: mainColors.blue,
+  overlay: mainColors.semiBlack,
+  danger: mainColors.red,
   text: {
     primary: mainColors.dark1,
     secondary: mainColors.grey1,
@@ -29,6 +33,10 @@ export const colors = {
     secondary: {
       background: 'white',
       text: 'black',
+    },
+    disable: {
+      background: mainColors.grey3,
+      text: 'white',
     },
   },
   greenCard: mainColors.green2,

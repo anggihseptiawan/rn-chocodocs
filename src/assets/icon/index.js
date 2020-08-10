@@ -14,6 +14,8 @@ import Help from './question.png';
 import Rate from './stars.png';
 import Edit from './edit.png';
 import Language from './translate.png';
+import Add from './add.png';
+import Remove from './close.png';
 
 export {
   Logo,
@@ -31,5 +33,7 @@ export {
   Help,
   Rate,
   Edit,
-  Language
+  Language,
+  Add,
+  Remove,
 };

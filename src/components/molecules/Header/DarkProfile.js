@@ -5,14 +5,10 @@ import {Button} from '../../atoms';
 import {Person} from '../../../assets';
 import {TouchableNativeFeedback} from 'react-native-gesture-handler';
 
-const DarkProfile = ({navigation, handlePress}) => {
+const DarkProfile = ({handlePress}) => {
   return (
     <TouchableNativeFeedback style={styles.container} onPress={handlePress}>
-      <Button
-        type="icon-only"
-        icon="back"
-        handlePress={() => navigation.goBack()}
-      />
+      <Button type="icon-only" icon="back" />
       <View>
         <Text style={styles.name}>Budi Yulianto</Text>
         <Text style={styles.category}>Dokter Anak</Text>
