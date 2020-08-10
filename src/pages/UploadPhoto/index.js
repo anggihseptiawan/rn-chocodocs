@@ -17,8 +17,17 @@ const UploadPhoto = ({navigation}) => {
           <Text style={styles.occupation}>Product Designer</Text>
         </View>
         <View>
-          <Button title="Upload and Continue" space={15} />
-          <Link title="Skip for this" align="center" size={16} />
+          <Button
+            title="Upload and Continue"
+            space={15}
+            handlePress={() => navigation.replace('MainApp')}
+          />
+          <Link
+            title="Skip for this"
+            align="center"
+            size={16}
+            handlePress={() => navigation.replace('MainApp')}
+          />
         </View>
       </View>
     </View>

@@ -1,16 +1,16 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
-import {Person} from '../../../assets';
 import {Star} from '../../../assets/icon';
 import {fonts, colors} from '../../../utils';
+import {TouchableNativeFeedback} from 'react-native-gesture-handler';
 
-const RatedDoctor = () => {
+const RatedDoctor = ({avatar, name, desc, handlePress}) => {
   return (
-    <View style={styles.container}>
-      <Image source={Person} style={styles.image} />
+    <TouchableNativeFeedback style={styles.container} onPress={handlePress}>
+      <Image source={avatar} style={styles.image} />
       <View style={styles.textWrapper}>
-        <Text style={styles.name}>Donita Aprilia</Text>
-        <Text style={styles.category}>Dokter kandungan</Text>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.category}>{desc}</Text>
       </View>
       <View style={styles.starWrapper}>
         <Image source={Star} style={styles.star} />
@@ -19,7 +19,7 @@ const RatedDoctor = () => {
         <Image source={Star} style={styles.star} />
         <Image source={Star} style={styles.star} />
       </View>
-    </View>
+    </TouchableNativeFeedback>
   );
 };
 
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 15,
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   image: {
     width: 50,

@@ -5,7 +5,7 @@ import {fonts, colors} from '../../../utils';
 import DarkProfile from './DarkProfile';
 
 const Header = ({handlePress, title, type}) => {
-  if (type === 'dark-profile') return <DarkProfile />;
+  if (type === 'dark-profile') return <DarkProfile handlePress={handlePress} />;
 
   return (
     <View style={styles.container(type)}>
@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
     backgroundColor: type === 'dark' ? colors.secondary : 'white',
     flexDirection: 'row',
     alignItems: 'center',
-    borderBottomLeftRadius: type === 'dark' ? 20 : '',
-    borderBottomRightRadius: type === 'dark' ? 20 : '',
+    borderBottomLeftRadius: type === 'dark' ? 20 : 0,
+    borderBottomRightRadius: type === 'dark' ? 20 : 0,
   }),
   image: {
     width: 20,

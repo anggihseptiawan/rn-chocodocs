@@ -7,14 +7,14 @@ import {
   NewsItem,
 } from '../../components';
 import {fonts, colors} from '../../utils';
-import {JSONCategoryDoctor} from '../../assets';
+import {JSONCategoryDoctor, NullPhoto, Person} from '../../assets';
 
 const Doctor = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <HomeProfile />
+          <HomeProfile handlePress={() => navigation.navigate('UserProfile')} />
           <Text style={styles.title}>
             Mau konsultasi dengan siapa hari ini ?
           </Text>
@@ -34,9 +34,24 @@ const Doctor = ({navigation}) => {
             </ScrollView>
           </View>
           <Text style={styles.labelTitle}>Top Rated Doctor</Text>
-          <RatedDoctor />
-          <RatedDoctor />
-          <RatedDoctor />
+          <RatedDoctor
+            name="Donita aprilia"
+            desc="Dokter anak"
+            avatar={Person}
+            handlePress={() => navigation.navigate('DokterProfile')}
+          />
+          <RatedDoctor
+            name="Budi Yulianto"
+            desc="Dokter Jantung"
+            avatar={NullPhoto}
+            handlePress={() => navigation.navigate('DokterProfile')}
+          />
+          <RatedDoctor
+            name="Dodi Mulyono"
+            desc="Dokter Gigi"
+            avatar={Person}
+            handlePress={() => navigation.navigate('DokterProfile')}
+          />
           <Text style={styles.labelTitle}>Good News</Text>
           <NewsItem />
           <NewsItem />

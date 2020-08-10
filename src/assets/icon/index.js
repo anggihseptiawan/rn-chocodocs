@@ -10,6 +10,10 @@ import heart from './heart.png';
 import Star from './star.png';
 import NullStar from './star1.png';
 import Send from './send.png';
+import Help from './question.png';
+import Rate from './stars.png';
+import Edit from './edit.png';
+import Language from './translate.png';
 
 export {
   Logo,
@@ -24,4 +28,8 @@ export {
   Star,
   NullStar,
   Send,
+  Help,
+  Rate,
+  Edit,
+  Language
 };

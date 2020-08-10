@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Person} from '../../assets';
-import {Header, ListDoctor} from '../../components';
+import {Header, List} from '../../components';
 
 const ChooseDoctor = ({navigation}) => {
   return (
@@ -12,28 +12,28 @@ const ChooseDoctor = ({navigation}) => {
         handlePress={() => navigation.goBack()}
       />
       <View style={styles.content}>
-        <ListDoctor
+        <List
           image={Person}
           name="Budi Yulianto"
           chat="Pria"
           type="next"
           handlePress={() => navigation.navigate('Chat')}
         />
-        <ListDoctor
+        <List
           image={Person}
           name="Budi Yulianto"
           chat="Pria"
           type="next"
           handlePress={() => navigation.navigate('Chat')}
         />
-        <ListDoctor
+        <List
           image={Person}
           name="Budi Yulianto"
           chat="Pria"
           type="next"
           handlePress={() => navigation.navigate('Chat')}
         />
-        <ListDoctor
+        <List
           image={Person}
           name="Budi Yulianto"
           chat="Pria"

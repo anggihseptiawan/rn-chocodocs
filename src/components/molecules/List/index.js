@@ -1,13 +1,24 @@
 import React from 'react';
 import {View, StyleSheet, Text, Image} from 'react-native';
 import {fonts, colors} from '../../../utils';
-import {IconNext} from '../../../assets';
+import {IconNext, Edit, Language, Help, Rate} from '../../../assets';
 import {TouchableNativeFeedback} from 'react-native-gesture-handler';
 
-const ListDoctor = ({image, name, chat, type, handlePress}) => {
+const List = ({image, name, chat, type, handlePress, icon}) => {
+  const Icon = () => {
+    if (icon === 'editProfile')
+      return <Image source={Edit} style={styles.icon} />;
+    if (icon === 'language')
+      return <Image source={Language} style={styles.icon} />;
+    if (icon === 'help') return <Image source={Help} style={styles.icon} />;
+    if (icon === 'rate') return <Image source={Rate} style={styles.icon} />;
+    return <Image source={Edit} style={styles.icon} />;
+  };
+
   return (
     <TouchableNativeFeedback style={styles.container} onPress={handlePress}>
-      <Image source={image} style={styles.image} />
+      {icon ? <Icon /> : <Image source={image} style={styles.image} />}
+
       <View style={styles.text}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.chat}>{chat}</Text>
@@ -47,4 +58,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListDoctor;
+export default List;

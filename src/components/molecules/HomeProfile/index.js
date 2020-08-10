@@ -2,16 +2,17 @@ import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import {Person} from '../../../assets';
 import {fonts, colors} from '../../../utils';
+import {TouchableNativeFeedback} from 'react-native-gesture-handler';
 
-const HomeProfile = () => {
+const HomeProfile = ({handlePress}) => {
   return (
-    <View style={styles.container}>
+    <TouchableNativeFeedback style={styles.container} onPress={handlePress}>
       <Image source={Person} style={styles.image} />
       <View>
         <Text style={styles.name}>Shayna Melinda</Text>
         <Text style={styles.occupation}>Product Designer</Text>
       </View>
-    </View>
+    </TouchableNativeFeedback>
   );
 };
 

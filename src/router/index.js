@@ -11,6 +11,9 @@ import {
   Hospitals,
   ChooseDoctor,
   Chat,
+  UserProfile,
+  EditProfile,
+  DokterProfile,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomNavigator} from '../components';
@@ -69,6 +72,21 @@ const Router = () => {
       <Stack.Screen
         name="Chat"
         component={Chat}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="UserProfile"
+        component={UserProfile}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="EditProfile"
+        component={EditProfile}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="DokterProfile"
+        component={DokterProfile}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

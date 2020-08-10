@@ -3,10 +3,11 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 import {colors, fonts} from '../../../utils';
 import {Button} from '../../atoms';
 import {Person} from '../../../assets';
+import {TouchableNativeFeedback} from 'react-native-gesture-handler';
 
-const DarkProfile = ({navigation}) => {
+const DarkProfile = ({navigation, handlePress}) => {
   return (
-    <View style={styles.container}>
+    <TouchableNativeFeedback style={styles.container} onPress={handlePress}>
       <Button
         type="icon-only"
         icon="back"
@@ -17,7 +18,7 @@ const DarkProfile = ({navigation}) => {
         <Text style={styles.category}>Dokter Anak</Text>
       </View>
       <Image source={Person} style={styles.image} />
-    </View>
+    </TouchableNativeFeedback>
   );
 };
 

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {ListDoctor} from '../../components';
+import {List} from '../../components';
 import {colors, fonts} from '../../utils';
 import {Person, NullPhoto} from '../../assets';
 
-const Messages = () => {
+const Messages = ({navigation}) => {
   const [doctors] = useState([
     {
       id: 1,
@@ -31,7 +31,15 @@ const Messages = () => {
       <View style={styles.mainContent}>
         <Text style={styles.title}>Messages Page</Text>
         {doctors.map(({id, image, name, chat}) => {
-          return <ListDoctor key={id} image={image} name={name} chat={chat} />;
+          return (
+            <List
+              key={id}
+              image={image}
+              name={name}
+              chat={chat}
+              handlePress={() => navigation.navigate('Chat')}
+            />
+          );
         })}
       </View>
     </View>
