@@ -23,6 +23,7 @@ const SignUp = ({navigation}) => {
           fullName: form.fullName,
           occupation: form.occupation,
           email: form.email,
+          uid: res.user.uid,
         };
 
         // add data to database
@@ -34,6 +35,7 @@ const SignUp = ({navigation}) => {
           message: 'Yeay, pendaftaran berhasil..',
           type: 'success',
         });
+        navigation.navigate('UploadPhoto', data);
       })
       .catch((err) => {
         setLoading(false);

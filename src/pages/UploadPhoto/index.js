@@ -3,35 +3,71 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 import {Header, Button, Link} from '../../components';
 import {NullPhoto, Add, Remove} from '../../assets';
 import {colors, fonts} from '../../utils';
+import {TouchableNativeFeedback} from 'react-native-gesture-handler';
+import ImagePicker from 'react-native-image-picker';
+import {showMessage} from 'react-native-flash-message';
+import {Fire} from '../../config';
 
-const UploadPhoto = ({navigation}) => {
+const UploadPhoto = ({navigation, route}) => {
+  const {fullName, occupation, uid} = route.params;
+
+  const [photoForDB, setPhotoForDB] = useState('');
   const [hasPhoto, setHasPhoto] = useState(false);
+  const [photo, setPhoto] = useState(NullPhoto);
+
+  const getImage = () => {
+    ImagePicker.launchImageLibrary(
+      {quality: 0.5, maxWidth: 200, maxHeight: 200},
+      (res) => {
+        if (res.didCancel || res.error) {
+          showMessage({
+            message: 'Oops, sepertinya anda tidak memilih photo..',
+            type: 'danger',
+          });
+        } else {
+          setPhotoForDB(`data:${res.type};base64, ${res.data}`);
+
+          const source = {uri: res.uri};
+          setPhoto(source);
+          setHasPhoto(true);
+        }
+      },
+    );
+  };
+
+  const uploadAndContinue = () => {
+    // save photo for db
+    Fire.database().ref(`users/${uid}/`).update({photo: photoForDB});
+    navigation.replace('MainApp', uid);
+  };
 
   return (
     <View style={styles.container}>
       <Header title="Upload Photo" handlePress={() => navigation.goBack()} />
       <View style={styles.mainContent}>
         <View style={styles.topSection}>
-          <View style={styles.imageWrapper}>
-            <Image source={NullPhoto} style={styles.image} />
+          <TouchableNativeFeedback
+            style={styles.imageWrapper}
+            onPress={getImage}>
+            <Image source={photo} style={styles.image} />
             {hasPhoto && <Image source={Remove} style={styles.icon} />}
             {!hasPhoto && <Image source={Add} style={styles.icon} />}
-          </View>
-          <Text style={styles.name}>Shayna Melinda</Text>
-          <Text style={styles.occupation}>Product Designer</Text>
+          </TouchableNativeFeedback>
+          <Text style={styles.name}>{fullName}</Text>
+          <Text style={styles.occupation}>{occupation}</Text>
         </View>
         <View>
           <Button
-            disable
+            disable={!hasPhoto}
             title="Upload and Continue"
             space={15}
-            handlePress={() => navigation.replace('MainApp')}
+            handlePress={uploadAndContinue}
           />
           <Link
             title="Skip for this"
             align="center"
             size={16}
-            handlePress={() => navigation.replace('MainApp')}
+            handlePress={uploadAndContinue}
           />
         </View>
       </View>
@@ -58,6 +94,7 @@ const styles = StyleSheet.create({
     width: 110,
     height: 110,
     position: 'relative',
+    borderRadius: 110 / 2,
   },
   icon: {
     width: 30,
