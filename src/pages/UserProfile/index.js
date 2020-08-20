@@ -1,12 +1,33 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, StyleSheet} from 'react-native';
 import {Header, Profile, List} from '../../components';
+import {getData} from '../../utils';
 
 const UserProfile = ({navigation}) => {
+  const [profile, setProfile] = useState({
+    fullName: '',
+    occupation: '',
+  });
+
+  useEffect(() => {
+    getData('user').then((res) => {
+      const data = res;
+      data.photo = {uri: res.photo};
+      setProfile(data);
+    });
+  }, []);
+
   return (
     <View style={styles.page}>
       <Header title="Profile" />
-      <Profile name="Budi Yulianto" occupation="Mobile Developer" />
+      {profile.fullName.length > 0 && (
+        <Profile
+          photo={profile.photo}
+          name={profile.fullName}
+          occupation={profile.occupation}
+        />
+      )}
+
       <View style={styles.container}>
         <List
           name="Edit Profile"

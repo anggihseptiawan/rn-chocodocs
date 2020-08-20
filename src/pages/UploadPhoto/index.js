@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {Header, Button, Link} from '../../components';
 import {NullPhoto, Add, Remove} from '../../assets';
-import {colors, fonts} from '../../utils';
+import {colors, fonts, storeData} from '../../utils';
 import {TouchableNativeFeedback} from 'react-native-gesture-handler';
 import ImagePicker from 'react-native-image-picker';
 import {showMessage} from 'react-native-flash-message';
@@ -38,6 +38,9 @@ const UploadPhoto = ({navigation, route}) => {
   const uploadAndContinue = () => {
     // save photo for db
     Fire.database().ref(`users/${uid}/`).update({photo: photoForDB});
+    const data = route.params;
+    data.photo = photoForDB;
+    storeData('user', data);
     navigation.replace('MainApp', uid);
   };
 
@@ -114,6 +117,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary[600],
     textAlign: 'center',
     marginTop: 20,
+    textTransform: 'capitalize',
   },
   occupation: {
     fontSize: 18,
@@ -121,6 +125,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: colors.text.secondary,
     marginTop: 4,
+    textTransform: 'capitalize',
   },
 });
 

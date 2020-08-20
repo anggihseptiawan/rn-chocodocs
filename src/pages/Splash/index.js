@@ -2,11 +2,18 @@ import React, {useEffect} from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {Logo} from '../../assets';
 import {fonts} from '../../utils';
+import {Fire} from '../../config';
 
 const Splash = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace('GetStarted');
+      Fire.auth().onAuthStateChanged((user) => {
+        if (user) {
+          navigation.replace('MainApp');
+        } else {
+          navigation.replace('GetStarted');
+        }
+      });
     }, 3000);
   }, []);
 

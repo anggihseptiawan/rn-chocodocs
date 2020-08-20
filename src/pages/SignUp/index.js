@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import {Button, Header, Input, Loading} from '../../components';
-import {useForm, colors} from '../../utils';
+import {useForm, colors, storeData, getData} from '../../utils';
 import {Fire} from '../../config';
 import {showMessage} from 'react-native-flash-message';
 
@@ -28,6 +28,7 @@ const SignUp = ({navigation}) => {
 
         // add data to database
         Fire.database().ref(`users/${res.user.uid}/`).set(data);
+        storeData('user', data);
 
         setLoading(false);
         setForm('reset');

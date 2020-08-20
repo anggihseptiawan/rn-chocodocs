@@ -1,12 +1,11 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
-import {Person} from '../../../assets';
 import {fonts, colors} from '../../../utils';
 
-const Profile = ({name, occupation}) => {
+const Profile = ({name, occupation, photo}) => {
   return (
     <View style={styles.container}>
-      <Image source={Person} style={styles.image} />
+      <Image source={photo} style={styles.image} />
       {name && (
         <View>
           <Text style={styles.name}>{name}</Text>
@@ -34,11 +33,13 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary[600],
     marginTop: 16,
     textAlign: 'center',
+    textTransform: 'capitalize',
   },
   occupation: {
     fontSize: 14,
     color: colors.text.secondary,
     textAlign: 'center',
+    textTransform: 'capitalize',
   },
 });
 

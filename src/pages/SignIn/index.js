@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {Logo} from '../../assets';
 import {Input, Link, Button, Loading} from '../../components';
-import {colors, fonts} from '../../utils';
+import {colors, fonts, useForm, storeData} from '../../utils';
 import {Fire} from '../../config';
 import {showMessage} from 'react-native-flash-message';
 
 const SignIn = ({navigation}) => {
-  const [form, setForm] = useState({email: '', password: ''});
+  const [form, setForm] = useForm({email: '', password: ''});
   const [loading, setLoading] = useState(false);
 
   const login = () => {
@@ -15,8 +15,16 @@ const SignIn = ({navigation}) => {
     Fire.auth()
       .signInWithEmailAndPassword(form.email, form.password)
       .then((res) => {
-        setLoading(false);
-        navigation.replace('MainApp');
+        Fire.database()
+          .ref(`users/${res.user.uid}/`)
+          .once('value')
+          .then((resDB) => {
+            if (resDB.val()) {
+              setLoading(false);
+              storeData('user', resDB.val());
+              navigation.replace('MainApp');
+            }
+          });
       })
       .catch((err) => {
         setLoading(false);
@@ -36,14 +44,14 @@ const SignIn = ({navigation}) => {
           label="Email Address"
           space={25}
           value={form.email}
-          onChangeText={(value) => setForm('email', value)}
+          handleChange={(value) => setForm('email', value)}
         />
         <Input
           label="Password"
           space={10}
           value={form.password}
           secureTextEntry
-          onChangeText={(value) => setForm('password', value)}
+          handleChange={(value) => setForm('password', value)}
         />
         <Link title="Forgot Password" size={12} space={40} />
         <Button title="Sign In" space={30} handlePress={login} />
