@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Header, Profile, List} from '../../components';
 import {getData} from '../../utils';
+import {Fire} from '../../config';
 
 const UserProfile = ({navigation}) => {
   const [profile, setProfile] = useState({
@@ -16,6 +17,11 @@ const UserProfile = ({navigation}) => {
       setProfile(data);
     });
   }, []);
+
+  const signOut = () => {
+    Fire.auth().signOut();
+    navigation.replace('GetStarted');
+  };
 
   return (
     <View style={styles.page}>
@@ -53,6 +59,13 @@ const UserProfile = ({navigation}) => {
           chat="Need some help ?"
           type="next"
           icon="help"
+        />
+        <List
+          name="Sign Out"
+          chat="Want to end your session ?"
+          type="next"
+          icon="help"
+          handlePress={signOut}
         />
       </View>
     </View>
