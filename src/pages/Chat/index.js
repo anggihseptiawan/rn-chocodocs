@@ -17,7 +17,11 @@ const Chat = ({navigation}) => {
         <ChatItem />
         <ChatItem />
       </View>
-      <ChatInput />
+      <ChatInput
+        value=""
+        handleChange={(value) => alert(value)}
+        handlePress={() => alert('woiii')}
+      />
     </View>
   );
 };

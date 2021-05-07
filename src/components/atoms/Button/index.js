@@ -8,7 +8,7 @@ import ButtonSend from './ButtonSend';
 
 const Button = ({type, title, space, handlePress, icon, disable}) => {
   if (type === 'btn-icon') {
-    return <ButtonSend disable={disable} />;
+    return <ButtonSend disable={disable} handlePress={handlePress} />;
   }
 
   if (type === 'icon-only') {

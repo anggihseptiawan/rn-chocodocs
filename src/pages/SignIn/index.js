@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import React from 'react';
+import {Image, StyleSheet, Text, View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
+import {useDispatch} from 'react-redux';
 import {Logo} from '../../assets';
-import {Input, Link, Button, Loading} from '../../components';
-import {colors, fonts, useForm, storeData} from '../../utils';
+import {Button, Input, Link} from '../../components';
 import {Fire} from '../../config';
-import {showMessage} from 'react-native-flash-message';
-
+import {colors, fonts, showAlert, storeData, useForm} from '../../utils';
 const SignIn = ({navigation}) => {
   const [form, setForm] = useForm({email: '', password: ''});
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const login = () => {
-    setLoading(true);
+    dispatch({type: 'SET_LOADER', value: true});
     Fire.auth()
       .signInWithEmailAndPassword(form.email, form.password)
       .then((res) => {
@@ -20,23 +20,20 @@ const SignIn = ({navigation}) => {
           .once('value')
           .then((resDB) => {
             if (resDB.val()) {
-              setLoading(false);
+              dispatch({type: 'SET_LOADER', value: false});
               storeData('user', resDB.val());
               navigation.replace('MainApp');
             }
           });
       })
       .catch((err) => {
-        setLoading(false);
-        showMessage({
-          message: err.message,
-          type: 'danger',
-        });
+        dispatch({type: 'SET_LOADER', value: false});
+        showAlert(err.message, 'danger');
       });
   };
 
   return (
-    <>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <Image source={Logo} style={styles.image} />
         <Text style={styles.title}>Masuk dan mulai berkonsultasi</Text>
@@ -62,8 +59,7 @@ const SignIn = ({navigation}) => {
           handlePress={() => navigation.navigate('SignUp')}
         />
       </View>
-      {loading && <Loading />}
-    </>
+    </ScrollView>
   );
 };
 

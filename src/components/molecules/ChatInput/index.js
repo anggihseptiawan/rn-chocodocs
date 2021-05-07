@@ -3,11 +3,20 @@ import {View, TextInput, StyleSheet} from 'react-native';
 import {colors} from '../../../utils';
 import {Button} from '../../atoms';
 
-const ChatInput = () => {
+const ChatInput = ({value, handleChange, handlePress}) => {
   return (
     <View style={styles.container}>
-      <TextInput style={styles.input} placeholder="Tulis pesan.." />
-      <Button type="btn-icon" disable />
+      <TextInput
+        style={styles.input}
+        placeholder="Tulis pesan.."
+        value={value}
+        onChangeText={handleChange}
+      />
+      <Button
+        type="btn-icon"
+        disable={value.length < 1}
+        handlePress={handlePress}
+      />
     </View>
   );
 };
